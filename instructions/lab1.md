@@ -20,7 +20,6 @@ In this lab, you will learn how to create a Alexa Voice Product. Then you will c
 
 ### 2. Connect to the hardware kit using the below instructions
 
-2. Connect to the hardware kit using the below instructions -
     -   Mac -  [screen](./serial.md)
     -   Windows - [putty](./serial.md)
     -   Linux -  [screen / minicom](./serial.md)
@@ -81,30 +80,30 @@ b. Click on your device name
 ![alt text](../images/AWS_IoT_cert_creation.png)
 
 a. On the menu, select Security
-    
+
 b. Click on "Create certificate"
-    
+
 #### 3.3: Download and activiate the new certificate
-    
+
 ![alt text](../images/AWS_IoT_cert_download.png)
-    
+
 a. Click on "Download" to save locally the certificate
-    
+
 b. Click on "Download" to save locally private key
-    
+
 c. Click on "Activate" to enable the certificate on IOT Core
-    
+
 d. Click on "Attach a policy"
-    
+
 #### 3.4: Attach policy to your cert
-    
+
 ![alt text](../images/AWS_IoT_cert_policy.png)
-    
+
 a. Select the certificate "summitAvsPermissionIoTPolicy"
 
 b. Click on Done to finish the certificate configuration
-    
-#### 4. Please navigate to the [AWS IoT Console](https://console.aws.amazon.com/iot/)           
+
+#### 4. Please navigate to the [AWS IoT Console](https://console.aws.amazon.com/iot/)
 
 ![alt text](../images/AWS_IoT_endpoint.png)
 
@@ -116,7 +115,7 @@ b. Copy the IOT endpoint for later NXP firmware configuration.
 
 After you've created an Amazon developer account, you'll need to create a product and security profile. This will enable your hardware kit (NxP) to connect to Alexa Voice Service.
 
-Log in to [AVS console](https://developer.amazon.com/alexa/console/avs/home). 
+Log in to [AVS console](https://developer.amazon.com/alexa/console/avs/home).
 
 If this is your first time using AVS, you'll see a welcome screen. Click the GET STARTED button, then click the CREATE PRODUCT button.
 
@@ -154,7 +153,6 @@ If you're a returning developer, click the Products -> CREATE PRODUCT button at 
 
 ### 9. Click **CREATE NEW PROFILE**
 
-
     - Security Profile Name: **MQTT for AVS Profile**
     - Security Profile Description: AVS IoT Workshop
     - Click NEXT.
@@ -173,15 +171,12 @@ If you're a returning developer, click the Products -> CREATE PRODUCT button at 
     ![alt text](../images/AVS_security_profile.png)
 
 <span style="color:orange">You will get the message, Product has been created. Click Ok and move to section B.</span>
-    <font color="orange">In the next lab you will need the following from this lab : </font>
-    
+<font color="orange">In the next lab you will need the following from this lab : </font>
+
     - AVS Client ID and Product ID available in the downloaded config.json file from Section A - Step 11
 
     - AWS IoT Endpoint Url from Section B - Step 4
 
-Congratulations! You now have created the Alexa Voice Product and the AWS resources. In the next lab , you will embed these configurations on the hardware , so they can communicate with Alexa Voice service and AWS IoT services. 
+Congratulations! You now have created the Alexa Voice Product and the AWS resources. In the next lab , you will embed these configurations on the hardware , so they can communicate with Alexa Voice service and AWS IoT services.
 
-### See you in [lab2](./lab2.md). 
-
-
-
+### See you in [lab2](./lab2.md).

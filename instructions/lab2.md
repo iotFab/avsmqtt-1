@@ -2,9 +2,10 @@
 
 # Lab 2 : Enable Alexa on the NxP MCU kit
 
-In this lab, you will learn how to configure the NxP microcontroller kit to connect to Alexa Voice service and AWS IoT Core. You will start to use Alexa voice commands on the kit. 
+In this lab, you will learn how to configure the NxP microcontroller kit to connect to Alexa Voice service and AWS IoT Core. You will start to use Alexa voice commands on the kit.
 
 ## <span style="color:orange"> You will continue to build step 1a of this architecture :</span>
+
 ![alt text](../images/arch-1a.png)
 
 ## A. Upload certificate and private key to the device
@@ -31,8 +32,6 @@ In this lab, you will learn how to configure the NxP microcontroller kit to conn
 
 ### 1. Connect to the hardware kit using the below instructions (same as in Lab 1)
 
-2. Read the below and then run the commands to configure the kit to connect to Alexa Voice Services and AWS IoT services. 
-    
 ### 2. Read the below and then run the commands to configure the kit to connect to Alexa Voice Services and AWS IoT services
 
 - **Client id** and **Product Id** is required for the kit to successfully authenticate to Alexa Voice service
@@ -82,7 +81,7 @@ You will get the User code and the URL from the console
 
 - Login with the same email ,if prompted, that you used for the Alexa developers console prior in Lab1-C
 - Paste the user code and submit.
-    ![alt text](../images/lwa.png) 
+![alt text](../images/lwa.png)
 - Allow AVS connection
 ![alt text](../images/AVS_Account_connection.png)
 - And Voilà
@@ -104,7 +103,7 @@ You will get the User code and the URL from the console
 
 **And get to know about the fantastic timeclock in Paris.**
 
-## C.  Navigate to AWS IoT console 
+## C.  Navigate to AWS IoT console
 
 Please login to the [AWS IoT Console](https://console.aws.amazon.com/iot/) and select **Manage** (on the left pane) -> Things
 
@@ -113,22 +112,11 @@ Please login to the [AWS IoT Console](https://console.aws.amazon.com/iot/) and s
 
 To learn more about AVS Integration for AWS IoT, please click [here](https://developer.amazon.com/docs/alexa-voice-service/avs-for-aws-iot-overview.html).
 
-<span style="color:orange">Please keep the board muted. Press the switch SW1 on the board , and it will mute and turn on the red led. 
+<span style="color:orange">Please keep the board muted. Press the switch SW1 on the board , and it will mute and turn on the red led.
 </span>
 
-![alt text](../images/board1.png) 
+![alt text](../images/board1.png)
 
-Congratulations! You now have access to the Alexa Voice Service APIs from your hardware and able to see connection of the hardware from AWS IoT console. 
+Congratulations! You now have access to the Alexa Voice Service APIs from your hardware and able to see connection of the hardware from AWS IoT console.
 
-### See you in [lab3](./lab3.md). 
-
-
-
-
-
-
-
-
-
-
-
+### See you in [lab3](./lab3.md).
