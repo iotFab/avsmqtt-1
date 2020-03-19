@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: 'AWS CloudFormation template for the re:invent 2019'
+Description: 'AWS CloudFormation template for the AWS NXP Alexa workshop'
 Parameters:
   DeviceName:
     Description: Hardware Serial number provided to you
@@ -9,6 +9,11 @@ Parameters:
     AllowedPattern: ^[a-zA-Z0-9]*$
     ConstraintDescription: You must specify the device name
 Resources:
+  ThingNXP: 
+    Type: AWS::IoT::Thing
+    Properties: 
+        ThingName: 
+          Ref: "DeviceName"
   IoTloggingRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -92,8 +97,8 @@ Resources:
     Type: 'AWS::Lambda::Function'
     Properties:
       Code:
-        S3Bucket: alexa-reinvent
-        S3Key: alexalambda.zip
+        S3Bucket: aws-nxp-alexa-workshop
+        S3Key: Lambda/alexalambda.zip
       Handler: hello_world.handler
       MemorySize: 128
       Role: !GetAtt 
@@ -122,8 +127,8 @@ Resources:
         - LambdaExecutionRole
         - Arn
       Code:
-        S3Bucket: alexa-reinvent
-        S3Key: deviceshadow.zip
+        S3Bucket: aws-nxp-alexa-workshop
+        S3Key: Lambda/deviceshadow.zip
       Runtime: python3.7
       Timeout: 20
       TracingConfig:
@@ -141,8 +146,8 @@ Resources:
         - LambdaExecutionRole
         - Arn
       Code:
-        S3Bucket: alexa-reinvent
-        S3Key: devicemgmtlambda.zip
+        S3Bucket: aws-nxp-alexa-workshop
+        S3Key: Lambda/devicemgmtlambda.zip
       Runtime: python3.7
       Timeout: 20
       TracingConfig:
@@ -154,7 +159,7 @@ Resources:
           device_mgmt_role_arn: !GetAtt
             - IoTdevicemanagementRole
             - Arn
-          input_file_bucket: "alexa-reinvent"
+          input_file_bucket: "aws-nxp-alexa-workshop"
           input_file_key: "bulk.json"
           logging_role_arn: !GetAtt 
             - IoTloggingRole
@@ -168,8 +173,8 @@ Resources:
         - LambdaExecutionRole
         - Arn
       Code:
-        S3Bucket: alexa-reinvent
-        S3Key: defenderauditlambda.zip
+        S3Bucket: aws-nxp-alexa-workshop
+        S3Key: Lambda/defenderauditlambda.zip
       Runtime: python3.7
       Timeout: 20
       TracingConfig:
@@ -208,12 +213,12 @@ Resources:
     Type: 'AWS::Lambda::Function'
     Properties:
       Code:
-        S3Bucket: alexa-reinvent
-        S3Key: devdeflambda.zip
+        S3Bucket: aws-nxp-alexa-workshop
+        S3Key: Lambda/devdeflambda.zip
       Environment:
         Variables:
           LOG_LEVEL: DEBUG
-          TARGET_POLICY_NAME: reinventAvsPermissiveIoTPolicy
+          TARGET_POLICY_NAME: workshopAvsPermissiveIoTPolicy
       Handler: lambda_function.lambda_handler
       MemorySize: 128
       Role:
@@ -254,7 +259,7 @@ Resources:
             - iot:ListPolicyVersions
             - iot:SetDefaultPolicyVersion
             Effect: Allow
-            Resource: arn:aws:iot:*:*:policy/reinventAvsPermissiveIoTPolicy
+            Resource: arn:aws:iot:*:*:policy/workshopAvsPermissiveIoTPolicy
       - PolicyName: LambdaCwlPolicy
         PolicyDocument:
           Statement:
@@ -287,7 +292,7 @@ Resources:
   PermissiveIoTPolicy:
     Type: AWS::IoT::Policy
     Properties:
-      PolicyName: reinventAvsPermissiveIoTPolicy
+      PolicyName: workshopAvsPermissiveIoTPolicy
       PolicyDocument:
         Statement:
         - Action:

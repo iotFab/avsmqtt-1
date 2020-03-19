@@ -1,4 +1,4 @@
-![alt text](./images//aws_logo.png)
+![alt text](./images/aws_logo.png)
 
 # Build Voice Controlled home devices with AWS IoT and Alexa 
 
@@ -8,6 +8,7 @@ In this workshop, you will learn to build an Alexa device and how you can manage
 # <span style="color:orange">Please ensure you have the below setup, before you proceed with the labs :</span>
 
 ### Prerequisites 
+
 1. Laptop (Windows / Mac / Linux)
 2. Amazon Developer Account
     - [Create one here in **US region** if you dont have](https://developer.amazon.com/login.html) 
@@ -39,5 +40,6 @@ In this workshop, you will learn to build an Alexa device and how you can manage
 - [Answers](./instructions/faq.md) to some common questions
 
 # You are going to build the below solution today -
+
 ![alt text](./images/architecture.png)
 

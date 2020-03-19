@@ -5,6 +5,7 @@
 In this lab, you will learn how to create a Alexa Voice Product. Then you will create the AWS resources required for the upcoming labs. 
 
 ## <span style="color:orange"> You will build step 1a of this architecture :</span>
+
 ![alt text](../images/arch-1a.png)
 
 ## A.  Identify Serial number of the NXP kit and configure WiFi
@@ -13,29 +14,31 @@ In this lab, you will learn how to create a Alexa Voice Product. Then you will c
 
 ## <span style="color:orange"> You need to establish serial connection to the device : </span>
 
-1. Please connect both the USB ports to the adapter provided, and connect the adapter to the laptop. 
+### 1. Please connect both the USB ports to the adapter provided, and connect the adapter to the laptop
+
     ![alt text](../images/laptop.jpg) 
 
+### 2. Connect to the hardware kit using the below instructions
 
-2. Connect to the hardware kit using the below instructions - 
+2. Connect to the hardware kit using the below instructions -
     -   Mac -  [screen](./serial.md)
     -   Windows - [putty](./serial.md)
     -   Linux -  [screen / minicom](./serial.md)
 
+### 3. Device Serial number and WiFi configuration
 
-2. Read the below and then run the commands to identify serian number of the device and configure WiFi. 
-
-    Please enter the commands similar to the screenshot below **One by One**
-
-    ![alt text](../images/wifi.png) 
+Please enter the following commands on your serial terminal.
 
     ```
     serial_number
 
-    setup aws-workshop things@@afr
+setup <your wifi ssid> <your wifi password>
     ```
+You should obtain information similar to the screenshot below
 
-    Please **record** the serial number of the device. After you will issue setup command device will restart.
+![alt text](../images/wifi.png)
+
+Please **record** device serial number before you setup the WiFi as the device will restart.  
     If you experience strange behaviour in the MacOS Terminal, please issue following commands
     
     ```
@@ -45,71 +48,69 @@ In this lab, you will learn how to create a Alexa Voice Product. Then you will c
 
 ## B.  Create AWS resources 
 
-1. Login to AWS Console 
-    -   Launch [Team Dashboard](https://dashboard.eventengine.run/dashboard)
-    - Paste the 12 digit Hash key provided to you by AWS 
-    - Click Accept Terms & Login
+### 1. Login to your [AWS Console](https://console.aws.amazon.com/console/home)
 
-    ![alt text](../images/hash.png)
+![alt text](../images/aws-signin.png)
 
-2. Next, Copy the Account ID to a local notepad
-    - Team name is the Account Id (see screenshot below)
-    - **DONOT EDIT** the Team Name (a.k.a Account ID)
-    - Click AWS Console 
+### 2. Click here to create [cloudformation-stack-eu-west-1](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?stackName=AWS-NXP-Alexa-workshop&templateURL=https://aws-nxp-alexa-workshop.s3-eu-west-1.amazonaws.com/templates/avs-iot-cfn.yaml)
  
+![alt text](../images/cfn.png)
 
-    ![alt text](../images/account.png)
+a. Enter device serial number without '='
     
-    - Click Open AWS console
+b. Validate ressource requirement
 
-    ![alt text](../images/awsconsole.png)
+c. Create the stack
 
-3. Click here to create [cloudformation-stack-us-east-1](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=reinventavsmqtt&templateURL=https://s3.amazonaws.com/alexa-reinvent/avs-iot-cfn.yaml)
+<span style="color:orange">The cloudformation will take between 3-5 mins to complete. Once complete</span>
     
-    a. Enter the serial number, you got earlier
+### 3. Configure your Thing from [AWS IoT Console](https://console.aws.amazon.com/iot/)
 
-    b. Leave rest of the options default and click Create
+- Click Get started (if prompted)
 
-    ![alt text](../images/cfn.png)
+#### 3.1: Navigate to your Thing
+    
+![alt text](../images/AWS_IoT_thinglist.png)
 
-    <span style="color:orange">The cloudformation will take between 3-5 mins to complete. Once complete - </span>
+a. On the menu, select Manage -> Things
 
-4. Please navigate to the [AWS IoT Console](https://console.aws.amazon.com/iot/) 
+b. Click on your device name
 
-    - Click Get started (if prompted)
-    - select Manage -> Things 
-    - on the splash screen select "Register a thing"
-    
-    ![alt text](../images/thing-splash.png)
-    
-    - select "Create a single thing"
-    
-    ![alt text](../images/thing-create.png)
-    
-    - in the Name field type the serial number of the device **without =** Leave the rest of the options default and select Next
-    
-    ![alt text](../images/thing-name.png)
-    
-    -  select "Create certificate"
-    
-    ![alt text](../images/thing-cert.png)
-    
-    -  download Certificate and Private key, activate certificate and select "Attach a policy"
-    
-    ![alt text](../images/thing-cert-download.png)
-    
-    -  put the checkbox next to reinventAvsPermissivePoicy amd select "Register Thing"
+#### 3.2: Create device certificate
 
-    ![alt text](../images/thing-policy.png)
+![alt text](../images/AWS_IoT_cert_creation.png)
+
+a. On the menu, select Security
     
-5. Please navigate to the [AWS IoT Console](https://console.aws.amazon.com/iot/)           
-    - click *Settings* (left bottom pane)
-    - copy the IoT endpoint URL to a local notepad
+b. Click on "Create certificate"
+    
+#### 3.3: Download and activiate the new certificate
+    
+![alt text](../images/AWS_IoT_cert_download.png)
+    
+a. Click on "Download" to save locally the certificate
+    
+b. Click on "Download" to save locally private key
+    
+c. Click on "Activate" to enable the certificate on IOT Core
+    
+d. Click on "Attach a policy"
+    
+#### 3.4: Attach policy to your cert
+    
+![alt text](../images/AWS_IoT_cert_policy.png)
+    
+a. Select the certificate "summitAvsPermissionIoTPolicy"
 
-    <font color="red">The endpoint Url might be different for you , than in the screenshot here</font>
+b. Click on Done to finish the certificate configuration
+    
+#### 4. Please navigate to the [AWS IoT Console](https://console.aws.amazon.com/iot/)           
 
-    ![alt text](../images/iotendpoint.png)
+![alt text](../images/AWS_IoT_endpoint.png)
 
+a. On the menu, select Settings
+
+b. Copy the IOT endpoint for later NXP firmware configuration.
 
 ## C. Create AVS Product  
 
@@ -123,37 +124,37 @@ If you're a returning developer, click the Products -> CREATE PRODUCT button at 
 
 ## <span style="color:orange"> Fill in product information</span>
 
-1. Product Name: MQTT for AVS 
+### 1. Product Name: MQTT for AVS
 
-2. Product ID: PrototypeIoT
+### 2. Product ID: PrototypeIoT
 
-3. Please Select Your Product Type: Device with Alexa Built-in
+### 3. Please Select Your Product Type: Device with Alexa Built-in
 
     Will your device use a companion app?  **No**
 
     ![alt text](../images/avs1.png)
 
-4. Product Category: Other (Please specify)
+### 4. Product Category: Other (Please specify)
+
     - Enter Value: Prototype
 
-5. Brief Product description: Prototype
+### 5. Brief Product description: Prototype
 
-6. How will users interact with your product? : Hands-free
+### 6. How will users interact with your product? : Hands-free
 
     ![alt text](../images/avs2.png)
 
-7. **Skip** the Upload an image step. This is not required for prototyping.
+### 7. **Skip** the Upload an image step. This is not required for prototyping
 
-8. Select the options as below and click Next to Continue.
-
-    <span style="color:orange">Please use the AWS Account # you copied in Section A - Step 1.</span>
+### 8. Select the options as below and click Next to Continue
 
     ![alt text](../images/avs3.png)
 
-9. Click **CREATE NEW PROFILE**.
+<span style="color:orange">Please use the AWS Account # you copied in Step A.1</span>
+
+### 9. Click **CREATE NEW PROFILE**
 
 
-10. Enter your own custom Security Profile Name and Security Profile Description for the following fields - or use the below example names:
     - Security Profile Name: **MQTT for AVS Profile**
     - Security Profile Description: AVS IoT Workshop
     - Click NEXT.
@@ -162,14 +163,14 @@ If you're a returning developer, click the Products -> CREATE PRODUCT button at 
 
     **Security Profile ID** will be generated for you.
 
-11. Select **Other devices and platforms** in the **Platform Information** section.
+### 11. Select **Other devices and platforms** in the **Platform Information** section.
 
     - Client ID name -  **Prototype**
     - Click **Generate ID** and **Download**
-        -  You will need the Client Id in the next section
+    - You will need **clientId** and **productId** available inside the downloaded file in the next section
     - Check the box **I agree to the AVS ..** and Click **FINISH**.
 
-    ![alt text](../images/otherdevicesplatforms2.png)
+    ![alt text](../images/AVS_security_profile.png)
 
 <span style="color:orange">You will get the message, Product has been created. Click Ok and move to section B.</span>
     <font color="orange">In the next lab you will need the following from this lab : </font>
